@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+			list-style: none;
+			font-family: 'Noto Sans TC', sans-serif;
+		}
+		body{
+			background: url(https://picsum.photos/600/300?random=7);
+			background-size: cover;
+			background-position: center;
+			height: 100vh;
+			position: relative;
+		}
+		body:after{
+			position: absolute;
+	content: "";
+	top:0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity:.7;
+
+		}
+		.container{
+			position:absolute;
+			top:50%;
+			left: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			text-align: center;
+			background: black;
+			border:1px solid #999;
+			padding:10px;
+			box-shadow: 0 0 5px;
+			z-index: 10;
+
+		}
+		.info1{font-size: 50px;
+			font-weight: 800;}
+		.info{
+			font-size:80px;
+		}
+		.info2{
+			font-size: 40px;
+		}
+		.container td{
+			border: 2px solid #000000;
+			border-collapse: collapse;
+			padding:10px;
+			background: white;
+		}
+
+
+
+	</style>
+</head>
+<body>
+	<table class="container">
+		<tr>
+		<td colspan="5" class="info1">倒數至2028/9/22</td>
+	    </tr>
+	    <tr class="info">
+	    	<td id="weeks"></td>
+	    	<td id="days"></td>
+	    	<td id="hours"></td>
+	    	<td id="mins"></td>
+	    	<td id="secs"></td>
+
+	    </tr>
+	    <tr class="info2">
+	    	<td>週</td>
+	    	<td>天</td>
+	    	<td>時</td>
+	    	<td>分</td>
+	    	<td>秒</td>
+
+
+	    </tr>
+
+	</table>
+
+
+
+	<script type="text/javascript">
+		
+		function countTime(){
+			var now = new Date();
+			var eventDate = new Date(2028,9,22);
+
+			var currentTime = now.getTime();
+			var eventTime = eventDate.getTime();
+
+			var remTime = eventTime - currentTime;
+
+			var s = Math.floor(remTime / 1000) ;
+			var m = Math.floor(s / 60);
+			var h = Math.floor(m / 60);
+			var d = Math.floor(h / 24);
+			var w = Math.floor(d / 7);
+
+			h %=24;
+			m %=60;
+			s %=60;
+			d %=7;
+
+			h=(h<10) ? '0'+h:h;
+			m=(m<10) ? '0'+m:m;
+			s=(s<10) ? '0'+s:s;
+			d='0'+d;
+			w=(w<10) ? '0'+w:w;
+
+			document.getElementById('weeks').textContent=w;
+			document.getElementById('days').textContent=d;
+			document.getElementById('hours').textContent=h;
+			document.getElementById('mins').textContent=m;
+			document.getElementById('secs').textContent=s;
+
+
+			setTimeout(countTime,1000);
+			if(remTime<=0){
+				clearTimeout(countTime);
+
+			}
+
+		}
+		countTime();
+	</script>
+	
+</body>
+</html>
