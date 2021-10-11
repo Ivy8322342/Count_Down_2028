@@ -89,10 +89,11 @@
 <body>
 	<table class="container">
 		<tr>
-		<td colspan="5" class="info1">倒數至2028/9/22</td>
+		<td colspan="6" class="info1">倒數至2028/9/22</td>
 	    </tr>
 	    <tr class="info">
-	    	<td id="weeks"></td>
+	    	<td id="years"></td>
+	    	<td id="months"></td>
 	    	<td id="days"></td>
 	    	<td id="hours"></td>
 	    	<td id="mins"></td>
@@ -100,7 +101,8 @@
 
 	    </tr>
 	    <tr class="info2">
-	    	<td>週</td>
+	    	<td>年</td>
+	    	<td>月</td>
 	    	<td>天</td>
 	    	<td>時</td>
 	    	<td>分</td>
@@ -128,20 +130,25 @@
 			var m = Math.floor(s / 60);
 			var h = Math.floor(m / 60);
 			var d = Math.floor(h / 24);
-			var w = Math.floor(d / 7);
+			var M = Math.floor(d / 31);
+			var Y = Math.floor(M / 12);
+
 
 			h %=24;
 			m %=60;
 			s %=60;
-			d %=7;
+			d %=31;
+			M %=12;
+
 
 			h=(h<10) ? '0'+h:h;
 			m=(m<10) ? '0'+m:m;
 			s=(s<10) ? '0'+s:s;
-			d='0'+d;
-			w=(w<10) ? '0'+w:w;
-
-			document.getElementById('weeks').textContent=w;
+			d=(d<10) ? '0'+d:d;
+			M=(M<10) ? '0'+M:M;
+			Y=(Y<10) ? '0'+Y:Y;
+			document.getElementById('years').textContent=Y;
+			document.getElementById('months').textContent=M;
 			document.getElementById('days').textContent=d;
 			document.getElementById('hours').textContent=h;
 			document.getElementById('mins').textContent=m;
